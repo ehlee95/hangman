@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Hangman</h1>
+    </header>
+    <div class="container">
+        <div class="hangman">
+            <img id="paint" src="./images/hm1.png">
+            <div id="blanks">_ _ _ _ _</div>
+        </div> 
+        <div class="player">
+            <div id="letters">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+            <form id="playerInput">
+                <input id="letter" type="text"></input>
+                <button type="submit">Guess a letter</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="startPage">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Welcome to Hangman! Please enter a word before playing:</p>
+            <div id="startContainer">
+                <form id="enterWord">
+                    <input id="word" type="text"></input>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
