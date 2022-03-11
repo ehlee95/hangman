@@ -15,19 +15,19 @@
         <div class="player">
             <div id="letters">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
             <form id="playerInput">
-                <input id="letter" type="text"></input>
+                <input id="letter" type="text" autocomplete="off"></input>
                 <button type="submit">Guess a letter</button>
             </form>
         </div>
     </div>
 
-    <div class="startPage">
+    <div class="modal-background" id="startPage">
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Welcome to Hangman! Please enter a word before playing:</p>
             <div id="startContainer">
                 <form id="enterWord">
-                    <input id="word" type="text"></input>
+                    <input id="word" type="text" autocomplete="off"></input>
                     <button type="submit">Submit</button>
                 </form>
             </div>

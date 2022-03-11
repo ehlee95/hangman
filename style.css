@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     height: 80vh;
 }
 
@@ -8,8 +8,12 @@ header {
     text-align: center;
 }
 
+.strikeout {
+    text-decoration: line-through;
+    color: red;
+}
+
 .hangman {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +26,6 @@ header {
 }
 
 .player {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,8 +38,7 @@ header {
 }
 
 #paint {
-    border: 1px solid black;
-    width: 50%;
+    width: 60%;
 }
 
 #blanks {
@@ -47,7 +49,7 @@ header {
 
 
 
-.startPage {
+.modal-background {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
