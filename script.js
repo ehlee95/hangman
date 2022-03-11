@@ -8,14 +8,16 @@ let round = 1;
 
 document.querySelector("#enterWord").addEventListener("submit", (e) => {
     e.preventDefault();
+    // require at least one letter, all alphanumeric
+    if (wordInput.value.length > 0 && wordInput.value.match(/^[A-Za-z]+$/)) {
     startPage.style.display = "none";
-    playGame(wordInput.value);
+    playGame();
+    }
 });
 
 function buildString() {
 
-    // we need to make a string of charArray.length with spaces between each character
-    // one way to do it would be to make a temporary clone of charArray, then replace each character with a "_" if it's not represented in guesses
+    // make a temporary clone of charArray, then replace each character with a "_" if it's not represented in guesses
     
     let string = "";
     let clone = Array.from(charArray);
@@ -33,23 +35,21 @@ function buildString() {
     return string;
 }
 
-function playGame(word) {
+function playGame() {
     
     // start by splitting secret word into array of characters and displaying on the left side
-    charArray = wordInput.value.split("");
+    charArray = wordInput.value.toLowerCase().split("");
     document.querySelector("#blanks").innerHTML = buildString();
+    document.getElementById("letter").focus();
 
     // addEventListener(submit) to playerInput form, which triggers playRound
     document.querySelector("#playerInput").addEventListener("submit", (e) => {
         e.preventDefault();
         let letter = document.querySelector("#letter")
-        playRound(letter.value)
+        if (letter.value.length === 1 && letter.value.match(/^[A-Za-z]+$/))
+            playRound(letter.value.toLowerCase())
         letter.value = "";
     });
-
-    // while two conditions: 
-        // 1. hangman hasn't been built (7 turns?)
-        // 2. user hasn't guessed all letters
 }
 
 // plays a round (this function triggered when player submits a letter)
@@ -73,6 +73,7 @@ function playRound(letter) {
         document.querySelector("#blanks").innerHTML = buildString();
     else {
         round += 1;
+        document.querySelector("#guessLeft").innerHTML = "Guesses left: " + `${8 - round}`
         document.querySelector("#paint").src = "./images/hm" + round + ".png"; 
     }
 

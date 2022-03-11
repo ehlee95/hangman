@@ -2,6 +2,9 @@
 <head>
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -18,16 +21,17 @@
                 <input id="letter" type="text" autocomplete="off"></input>
                 <button type="submit">Guess a letter</button>
             </form>
+            <div id="guessLeft">Guesses left: 7</div>
         </div>
     </div>
 
     <div class="modal-background" id="startPage">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Welcome to Hangman! Please enter a word before playing:</p>
+            <h2>Welcome to Hangman!</h2>
+            <p>Please enter a word before playing:</p>
             <div id="startContainer">
                 <form id="enterWord">
-                    <input id="word" type="text" autocomplete="off"></input>
+                    <input id="word" type="password" autocomplete="off"></input>
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -35,14 +39,14 @@
     </div>
 
     <div class="modal-background" id="losePage">
-        <div class="modal-content">
+        <div class="modal-content" id="loseSlide">
             <p>Oh no! You've run out of guesses.</p>
             <button type="submit" onClick="window.location.reload();">Play again?</button>
         </div>
     </div>
 
     <div class="modal-background" id="winPage">
-        <div class="modal-content">
+        <div class="modal-content" id="winSlide">
             <p>You win!</p>
             <button type="submit" onClick="window.location.reload();">Play again?</button>
         </div>
