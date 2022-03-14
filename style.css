@@ -83,6 +83,7 @@ header {
 #loseSlide {
     width: 50%;
     margin: 15% 45%;
+    line-height: 1.5;
 }
 
 #winSlide {
@@ -102,6 +103,7 @@ header {
 button {
     font-family : inherit;
     padding: 10px;
+    margin-bottom: 15px;
 }
 
 input {

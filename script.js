@@ -73,7 +73,7 @@ function playRound(letter) {
         document.querySelector("#blanks").innerHTML = buildString();
     else {
         round += 1;
-        document.querySelector("#guessLeft").innerHTML = "Guesses left: " + `${8 - round}`
+        document.querySelector("#guessLeft").innerHTML = "Guesses left: " + `${8 - round}`;
         document.querySelector("#paint").src = "./images/hm" + round + ".png"; 
     }
 
@@ -82,9 +82,10 @@ function playRound(letter) {
         document.querySelector("#winPage").style.display = "block";
 
     // display lose screen if round = 8 and hangman is complete
-    if (round === 8)
+    if (round === 8) {
         document.querySelector("#losePage").style.display = "block";
-
+        document.querySelector("#loseText").innerHTML = `Oh no! You've run out of guesses.<br>The word was <b>"${wordInput.value}"</b>`;
+    }
 }
 
 
