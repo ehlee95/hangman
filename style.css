@@ -109,3 +109,31 @@ button {
 input {
     padding: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        display: block;
+    }
+    .modal-content {
+        font-size: 16px;
+    }
+    #letters {
+        margin-top: 30px;
+        font-size: 20px;
+    }
+    #blanks {
+        margin-top: 0px;
+        font-size: 25px;
+    }
+    #playerInput {
+        margin-top: 30px;
+    }
+    #loseSlide {
+        width: 80%;
+        margin: 20% auto;
+    }
+    #winSlide {
+        width: 80%;
+        margin: 20% auto;
+    }
+}

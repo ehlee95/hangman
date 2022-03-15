@@ -78,8 +78,9 @@ function playRound(letter) {
     }
 
     // display win screen if all chars are guessed
-    if (document.querySelector("#blanks").innerHTML.indexOf("_") === -1)
-        document.querySelector("#winPage").style.display = "block";
+    if (document.querySelector("#blanks").innerHTML.indexOf("_") === -1) {
+        document.querySelector("#winPage").style.display = "block";    
+    }
 
     // display lose screen if round = 8 and hangman is complete
     if (round === 8) {
