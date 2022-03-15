@@ -1,33 +1,50 @@
+// initialize game variables
 let startPage = document.querySelector("#startPage");
 let wordInput = document.querySelector("#word");
 startPage.style.display = "block";
+wordInput.focus();
+let word = "";
 let charArray = [];
 let displayString = "";
 let guesses = [];
 let round = 1;
 
+// prompts user for word, starts game when submitted 
 document.querySelector("#enterWord").addEventListener("submit", (e) => {
     e.preventDefault();
+    word = wordInput.value;
     // require at least one letter, all alphanumeric
-    if (wordInput.value.length > 0 && wordInput.value.match(/^[A-Za-z]+$/)) {
-    startPage.style.display = "none";
+    if (word.length > 0 && word.match(/^[A-Za-z]+$/)) {
     playGame();
     }
 });
 
+// start game by getting random word via API
+document.querySelector("#randomWord").addEventListener("click", () => {
+    fetch("https://random-word-api.herokuapp.com/word?number=1")
+        .then(res => res.json())
+        .then(res => {
+            word = res[0];
+            playGame();
+        })
+});
+
+https://random-word-api.herokuapp.com/word?number=1
+
+// builds a string of N length, with spaces wherever user hasn't guessed the letter
 function buildString() {
 
-    // make a temporary clone of charArray, then replace each character with a "_" if it's not represented in guesses
-    
+    // need to use clone so you don't alter original array
     let string = "";
     let clone = Array.from(charArray);
    
-    // check every letter in the clone
+    // check every letter in the clone to see if letter guessed
     for (let i = 0; i < clone.length; i++) {
         if (guesses.indexOf(clone[i]) === -1)
             clone[i] = "_";
     }
-
+    
+    // add spaces between letters
     for (let i = 0; i < clone.length; i++) {
         string += clone[i] + " ";
     }
@@ -35,10 +52,13 @@ function buildString() {
     return string;
 }
 
+// initialize game
 function playGame() {
-    
+   
+    startPage.style.display = "none";
+
     // start by splitting secret word into array of characters and displaying on the left side
-    charArray = wordInput.value.toLowerCase().split("");
+    charArray = word.toLowerCase().split("");
     document.querySelector("#blanks").innerHTML = buildString();
     document.getElementById("letter").focus();
 
@@ -80,15 +100,14 @@ function playRound(letter) {
     // display win screen if all chars are guessed
     if (document.querySelector("#blanks").innerHTML.indexOf("_") === -1) {
         document.querySelector("#winPage").style.display = "block";    
+        document.querySelectorAll("#winreplay").focus();
     }
 
     // display lose screen if round = 8 and hangman is complete
     if (round === 8) {
         document.querySelector("#losePage").style.display = "block";
-        document.querySelector("#loseText").innerHTML = `Oh no! You've run out of guesses.<br>The word was <b>"${wordInput.value}"</b>`;
+        document.querySelector("#loseText").innerHTML = `Oh no! You've run out of guesses.<br>The word was <b>"${word}"</b>`;
+        document.querySelectorAll("losereplay").focus(); 
     }
 }
-
-
-
 

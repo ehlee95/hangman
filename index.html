@@ -35,6 +35,9 @@
                     <input id="word" type="password" autocomplete="off"></input>
                     <button type="submit">Submit</button>
                 </form>
+                <div>
+                    <button id="randomWord">Or pick a random word</button>
+                </div>
             </div>
         </div>
     </div>
@@ -42,14 +45,14 @@
     <div class="modal-background" id="losePage">
         <div class="modal-content" id="loseSlide">
             <p id="loseText"></p>
-            <button type="submit" onClick="window.location.reload();">Play again?</button>
+            <button class="winreplay" type="submit" onClick="window.location.reload();">Play again?</button>
         </div>
     </div>
 
     <div class="modal-background" id="winPage">
         <div class="modal-content" id="winSlide">
             <p>You win!</p>
-            <button type="submit" onClick="window.location.reload();">Play again?</button>
+            <button class="losereplay" type="submit" onClick="window.location.reload();">Play again?</button>
         </div>
     </div>
 
