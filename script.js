@@ -29,8 +29,6 @@ document.querySelector("#randomWord").addEventListener("click", () => {
         })
 });
 
-https://random-word-api.herokuapp.com/word?number=1
-
 // builds a string of N length, with spaces wherever user hasn't guessed the letter
 function buildString() {
 
