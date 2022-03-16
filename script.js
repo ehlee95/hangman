@@ -1,58 +1,45 @@
 // initialize game variables
 let startPage = document.querySelector("#startPage");
 let wordInput = document.querySelector("#word");
-startPage.style.display = "block";
-wordInput.focus();
 let word = "";
 let charArray = [];
 let displayString = "";
 let guesses = [];
 let round = 1;
 
-// prompts user for word, starts game when submitted 
-document.querySelector("#enterWord").addEventListener("submit", (e) => {
-    e.preventDefault();
-    word = wordInput.value;
-    // require at least one letter, all alphanumeric
-    if (word.length > 0 && word.match(/^[A-Za-z]+$/)) {
-    playGame();
-    }
-});
+// displays start page and prompts user for game input
+function startGame() {
 
-// start game by getting random word via API
-document.querySelector("#randomWord").addEventListener("click", () => {
-    fetch("https://random-word-api.herokuapp.com/word?number=1")
-        .then(res => res.json())
-        .then(res => {
-            word = res[0];
+    startPage.style.display = "block";
+    wordInput.focus();
+
+    // starts game with word submitted by user 
+    document.querySelector("#enterWord").addEventListener("submit", (e) => {
+        e.preventDefault();
+        word = wordInput.value;
+        // require at least one letter, all alphanumeric
+        if (word.length > 0 && word.match(/^[A-Za-z]+$/)) {
             playGame();
-        })
-});
+        }
+    });
 
-// builds a string of N length, with spaces wherever user hasn't guessed the letter
-function buildString() {
-
-    // need to use clone so you don't alter original array
-    let string = "";
-    let clone = Array.from(charArray);
-   
-    // check every letter in the clone to see if letter guessed
-    for (let i = 0; i < clone.length; i++) {
-        if (guesses.indexOf(clone[i]) === -1)
-            clone[i] = "_";
-    }
-    
-    // add spaces between letters
-    for (let i = 0; i < clone.length; i++) {
-        string += clone[i] + " ";
-    }
-    string = string.substring(0, string.length - 1)
-    return string;
+    // start game with random word from API
+    document.querySelector("#randomWord").addEventListener("click", () => {
+        fetch("https://random-word-api.herokuapp.com/word?number=1")
+            .then(res => res.json())
+            .then(res => {
+                word = res[0];
+                playGame();
+            })
+    });
 }
+
+startGame();
 
 // initialize game
 function playGame() {
-   
+
+    // hides start page
     startPage.style.display = "none";
 
     // start by splitting secret word into array of characters and displaying on the left side
@@ -70,9 +57,30 @@ function playGame() {
     });
 }
 
+// builds a string of N length, with spaces wherever user hasn't guessed the letter
+function buildString() {
+
+    // need to use clone so you don't alter original array
+    let string = "";
+    let clone = Array.from(charArray);
+
+    // check every letter in the clone to see if letter guessed
+    for (let i = 0; i < clone.length; i++) {
+        if (guesses.indexOf(clone[i]) === -1)
+            clone[i] = "_";
+    }
+
+    // add spaces between letters
+    for (let i = 0; i < clone.length; i++) {
+        string += clone[i] + " ";
+    }
+    string = string.substring(0, string.length - 1)
+    return string;
+}
+
 // plays a round (this function triggered when player submits a letter)
 function playRound(letter) {
-   
+
     // check if letter has already been guessed. if it has, return
     if (guesses.indexOf(letter) === -1)
         guesses.push(letter);
@@ -108,4 +116,3 @@ function playRound(letter) {
         document.querySelectorAll("losereplay").focus(); 
     }
 }
-
