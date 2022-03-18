@@ -2,6 +2,8 @@
 
 Basic 1-player or 2-player hangman game.
 
+[Play here](https://ehlee95.github.io/hangman/)
+
 ## Starting the game
 
 The game opens up with a start page displayed as a modal. User is prompted to enter a word of their choice via text input. This word must contain only alphabetic characters, and once accepted, is converted into lowercase letters. Alternatively, the user can choose to play with a randomly generated word, selected via an API.
